@@ -185,7 +185,7 @@ const books = [
   }
 ]
 
-function displayBooks() {
+const displayBooks = () => {
   const bookContainer = document.getElementById('bookContainer');
 
   // Loopar igenom varje bok och skapar ett kort
@@ -207,7 +207,42 @@ function displayBooks() {
     // Lägger till kortet i container
     bookContainer.appendChild(bookCard);
   });
-}
+};
 
 // Anropar funktionen när sidan har laddats
 window.onload = displayBooks;
+
+
+
+
+// Funktion för att hämta unika genrer
+const getUniqueGenres = () => {
+  const genres = books.map(book => book.genre); // Skapar en lista av alla genrer
+  return [...new Set(genres)]; // Returnerar bara unika genrer
+};
+
+// Funktion för att skapa knappar för varje genre
+const createGenreButtons = () => {
+  const uniqueGenres = getUniqueGenres(); // Hämta unika genrer
+  const buttonContainer = document.getElementById('buttonContainer'); // Hämtar den container där knapparna ska läggas
+
+  uniqueGenres.forEach(genre => {
+    const button = document.createElement('button'); // Skapar en ny knapp
+    button.textContent = genre; // Sätter knappens text till genre
+    button.classList.add('button-genre'); // Lägger till en CSS-klass för stil
+    button.onclick = () => filterBooksByGenre(genre); // Lägger till ett klick-event för att filtrera böcker
+    buttonContainer.appendChild(button); // Lägger till knappen i containern
+  });
+};
+
+// Funktion för att filtrera böcker efter genre (kan anpassas efter behov)
+const filterBooksByGenre = (genre) => {
+  console.log(`Filter books by genre: ${genre}`);
+  // Här kan du lägga till logik för att filtrera och visa böcker baserat på den valda genren
+};
+
+// Anropar funktionen för att skapa genreknappar när sidan laddas
+window.onload = () => {
+  createGenreButtons();
+  displayBooks();
+};
