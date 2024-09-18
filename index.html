@@ -10,13 +10,30 @@
 </head>
 
 <body>
-  <h1>Project Library</h1>
+  <main class="wrapper">
+    <h1>Project Library</h1>
 
 
-  <div class="button-container" id="buttonContainer">
-  </div>
+    <div class="button-container" id="buttonContainer">
+      <button class="button-popular" id="buttonPopular">Popular</button>
 
-  <div class="book-container" id="bookContainer"></div>
+      <button class="button-latest" id="buttonLatest">Latest</button>
+
+      <button class="button-shuffle" id="buttonShuffle">Suprise me!</button>
+
+      <select id="genre" name="genre">
+        <option value="" disabled selected>Genre</option>
+        <option value="fiction">Fiction</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="mystery">Mystery</option>
+        <option value="adventure">Adventure</option>
+        <option value="horror">Horror</option>
+      </select>
+    </div>
+
+    <div class="book-container" id="bookContainer"></div>
+
+  </main>
 
   <!-- Don't forget to connect the JavaScript file -->
   <script src="./script.js"></script>

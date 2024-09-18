@@ -1,16 +1,12 @@
-.book-card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
-    width: 200px;
-
-    img {
-        width: 100%;
-    }
+.wrapper {
+    max-width: 1200px;
+    margin: auto;
+    width: 100%;
+    /* Se till att den fyller hela bredden */
 }
 
-.button-genre {
-    padding: 10px;
+button {
+    padding: 12px;
     margin: 5px;
     background-color: #6c63ff;
     color: white;
@@ -19,6 +15,41 @@
     cursor: pointer;
 }
 
-.button-genre:hover {
+button:hover {
     background-color: #5a52e0;
+}
+
+.book-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 90%;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+select {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #6c63ff;
+    /* font-size: 16px; */
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+select:focus {
+    border-color: #6c63ff;
+    outline: none;
 }
