@@ -1,7 +1,3 @@
-const buttonShuffle = document.getElementById('buttonShuffle');
-
-const bookContainer = document.getElementById('bookContainer');
-
 /*Here we have created two different arrays that you can work with if you want.
 If you choose to create your own arrays with elements, just make sure that some
 of the properties make sense to filter on, and some to sort on.*/
@@ -190,6 +186,13 @@ const books = [
 ]
 
 
+const buttonShuffle = document.getElementById('buttonShuffle');
+const bookContainer = document.getElementById('bookContainer');
+const genreFilter = document.getElementById('genreFilter');
+const buttonPopular = document.getElementById('buttonPopular');
+const buttonLatest = document.getElementById('buttonLatest');
+const buttons = document.querySelectorAll('button');
+
 const getRandomBook = () => {
   // We want to get a random book
   const randomIndex = Math.floor(Math.random() * books.length);
@@ -209,8 +212,8 @@ const getRandomBook = () => {
 };
 
 
-
 const displayBooks = (bookArray) => {
+  bookContainer.innerHTML = '';
   bookArray.forEach(book => {
     bookContainer.innerHTML += `
       <div class="card">
@@ -226,42 +229,67 @@ const displayBooks = (bookArray) => {
   });
 };
 
+const filterGenre = () => {
+  // 1. get the value from the select
+  const value = genreFilter.value;
+  console.log('the user selected:', value)
+
+  if (value === 'all') {
+    // get all the dogs
+    displayBooks(books);
+  } else {
+    // filter the dogs
+    const filteredList = books.filter(book => book.genre.toLowerCase() === value.toLowerCase());
+    console.log('filtered list:', filteredList)
+    displayBooks(filteredList);
+  }
+}
+
+const filterPopular = () => {
+  const sortedRating = books.sort((a, b) => b.rating - a.rating);
+  // Visa de sorterande böckerna (populäraste först)
+  console.log(sortedRating);
+  // Alternativt kan du visa böckerna direkt på sidan
+  displayBooks(sortedRating);
+}
+
+const filterLatest = () => {
+  const sortedYear = books.sort((a, b) => b.year - a.year);
+  console.log(sortedYear);
+  displayBooks(sortedYear);
+}
+
+const handleButtonClick = (event) => {
+  buttons.forEach(button => button.classList.remove('active'));
+  event.target.classList.add('active');
+};
+
+// Lägger till event listeners för alla knappar
+buttons.forEach(button => {
+  button.addEventListener('click', handleButtonClick);
+});
+
+// Funktion för att hantera när en genre väljs
+const handleDropdownSelection = () => {
+  const selectedValue = genreFilter.value;
+
+  // Om ett värde är valt, gör dropdown aktiv
+  if (selectedValue) {
+    genreFilter.classList.add('active');
+  } else {
+    genreFilter.classList.remove('active');
+  }
+};
+
+// Lägg till event listener på dropdown-menyn för att lyssna på val
+genreFilter.addEventListener('change', handleDropdownSelection);
+
 buttonShuffle.addEventListener("click", getRandomBook);
+genreFilter.addEventListener("change", filterGenre);
+buttonPopular.addEventListener("click", filterPopular);
+buttonLatest.addEventListener("click", filterLatest);
 
 // Anropar funktionen
 displayBooks(books);
 
 
-
-
-// // Funktion för att hämta unika genrer
-// const getUniqueGenres = () => {
-//   const genres = books.map(book => book.genre); // Skapar en lista av alla genrer
-//   return [...new Set(genres)]; // Returnerar bara unika genrer
-// };
-
-// // Funktion för att skapa knappar för varje genre
-// const createGenreButtons = () => {
-//   const uniqueGenres = getUniqueGenres(); // Hämta unika genrer
-//   const buttonContainer = document.getElementById('buttonContainer'); // Hämtar den container där knapparna ska läggas
-
-//   uniqueGenres.forEach(genre => {
-//     const button = document.createElement('button'); // Skapar en ny knapp
-//     button.textContent = genre; // Sätter knappens text till genre
-//     button.classList.add('button-genre'); // Lägger till en CSS-klass för stil
-//     button.onclick = () => filterBooksByGenre(genre); // Lägger till ett klick-event för att filtrera böcker
-//     buttonContainer.appendChild(button); // Lägger till knappen i containern
-//   });
-// };
-
-// // Funktion för att filtrera böcker efter genre (kan anpassas efter behov)
-// const filterBooksByGenre = (genre) => {
-//   console.log(`Filter books by genre: ${genre}`);
-//   // Här kan du lägga till logik för att filtrera och visa böcker baserat på den valda genren
-// };
-
-// // Anropar funktionen för att skapa genreknappar när sidan laddas
-// window.onload = () => {
-//   createGenreButtons();
-//   displayBooks();
-// };

@@ -5,7 +5,7 @@
     /* Se till att den fyller hela bredden */
 }
 
-button {
+/* button {
     padding: 12px;
     margin: 5px;
     background-color: #6c63ff;
@@ -17,6 +17,33 @@ button {
 
 button:hover {
     background-color: #5a52e0;
+} */
+
+/* Stil för inaktiva knappar */
+select,
+button {
+    padding: 12px;
+    margin: 5px;
+    background-color: white;
+    color: #6c63ff;
+    border: 2px solid #6c63ff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* När knappen är aktiv, fullfärgad */
+button.active {
+    background-color: #6c63ff;
+    color: white;
+
+}
+
+/* Hover-effekt */
+button:hover {
+    background-color: #5a52e0;
+    color: white;
 }
 
 .book-container {
@@ -38,18 +65,53 @@ button:hover {
     object-fit: cover;
 }
 
-select {
+/* select {
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
     background-color: #6c63ff;
-    /* font-size: 16px; */
     color: white;
     cursor: pointer;
     text-align: center;
-}
+} */
 
 select:focus {
     border-color: #6c63ff;
-    outline: none;
+    outline: #6c63ff;
+
+}
+
+select.active {
+    background-color: #6c63ff;
+    color: white;
+    border: 1px solid #6c63ff;
+}
+
+/* Dropdown hover-effekt */
+select:hover {
+    background-color: #5a52e0;
+    color: white;
+}
+
+/* Tablet */
+@media (min-width: 668px) and (max-width: 1024px) {
+    .book-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobil */
+@media (max-width: 667px) {
+    .book-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    select {
+        width: 85px;
+    }
 }
