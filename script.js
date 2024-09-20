@@ -202,11 +202,11 @@ const getRandomBook = () => {
    <div class="card">
       <img src="${book.image}" alt="${book.title}">
       <h3>${book.title}</h3>
-      <p>Författare: ${book.author}</p>
-      <p>Utgivningsår: ${book.year}</p>
-      <p>Genre: ${book.genre}</p>
-      <p>Betyg: ${book.rating}</p>
-      <p>Beskrivning: ${book.description}</p>
+      <p>${book.author}</p>
+      <p>Year: ${book.year}</p>
+      <p>${book.genre}</p>
+      <p>⭐️ ${book.rating}</p>
+      <p>${book.description}</p>
     </div>
   `;
 };
@@ -219,11 +219,11 @@ const displayBooks = (bookArray) => {
       <div class="card">
           <img src="${book.image}" alt="${book.title}">
           <h3>${book.title}</h3>
-          <p>Författare: ${book.author}</p>
-          <p>Utgivningsår: ${book.year}</p>
-          <p>Genre: ${book.genre}</p>
-          <p>Betyg: ${book.rating}</p>
-          <p>Beskrivning: ${book.description}</p>
+          <p>${book.author}</p>
+          <p>Year: ${book.year}</p>
+          <p>${book.genre}</p>
+          <p>⭐️ ${book.rating}</p>
+          <p>${book.description}</p>
       </div>
       `;
   });

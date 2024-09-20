@@ -1,96 +1,154 @@
-.wrapper {
-    max-width: 1200px;
+body {
+    margin: 0;
+    background-color: D9D9D9;
+    font-family: "Roboto Serif", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "GRAD" 0;
+}
+
+/* .wrapper {
+    background-color: #2f2e47;
     margin: auto;
-    width: 100%;
-    /* Se till att den fyller hela bredden */
-}
-
-/* button {
-    padding: 12px;
-    margin: 5px;
-    background-color: #6c63ff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #5a52e0;
+    max-width: 1100px;
+} */
+/* 
+.roboto-serif {
+    
 } */
 
-/* Stil för inaktiva knappar */
+
+header {
+    background-image: url("/books-images/header-booklibrary.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 500px;
+    position: relative;
+    /* Behövs för att positionera överlägget */
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    /* Mörkare överlägg (50% opacitet) */
+    z-index: 1;
+    /* Gör att överlägget hamnar över bakgrunden */
+}
+
+header h1,
+header p {
+    position: relative;
+    z-index: 2;
+    /* Gör att texten hamnar över överlägget */
+}
+
+h1 {
+    margin: 0;
+    padding: 30px;
+    color: white;
+    font-family: "Playfair Display SC", serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 270%;
+}
+
+.button-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0.5% 0 0.5% 0;
+}
+
+/* Style for inactive buttons/drop-down menu */
 select,
 button {
     padding: 12px;
     margin: 5px;
     background-color: white;
-    color: #6c63ff;
-    border: 2px solid #6c63ff;
+    color: #2f2e47;
+    border: 2px solid #2f2e47;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
+    font-family: "Roboto Serif", serif;
 }
 
-/* När knappen är aktiv, fullfärgad */
+/* Style for active buttons */
 button.active {
-    background-color: #6c63ff;
+    background-color: #2f2e47;
     color: white;
 
 }
 
-/* Hover-effekt */
+/* Button hover-effekt */
 button:hover {
-    background-color: #5a52e0;
+    background-color: #2f2e47;
     color: white;
 }
 
+.book-wrapper {
+    background-color: #2f2e47;
+}
+
+/* Container with all cards */
 .book-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+    max-width: 1200px;
+    margin: auto;
+    padding: 2% 0;
 }
 
+/* Syling on cards */
 .card {
+    background-color: white;
     border: 1px solid #ddd;
     padding: 10px;
     margin: 10px;
-    width: 90%;
+    border-radius: 8px;
 }
 
+/* Styling  */
 .card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
-/* select {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-    background-color: #6c63ff;
-    color: white;
-    cursor: pointer;
-    text-align: center;
-} */
-
 select:focus {
-    border-color: #6c63ff;
-    outline: #6c63ff;
-
+    border-color: #2f2e47;
+    outline: #2f2e47;
 }
 
 select.active {
-    background-color: #6c63ff;
+    background-color: #2f2e47;
     color: white;
-    border: 1px solid #6c63ff;
+    border: 1px solid #2f2e47;
 }
 
 /* Dropdown hover-effekt */
 select:hover {
-    background-color: #5a52e0;
+    background-color: #2f2e47;
     color: white;
+}
+
+footer {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 1% 3%;
+}
+
+h4 {
+    font-weight: 50;
 }
 
 /* Tablet */
@@ -102,6 +160,14 @@ select:hover {
 
 /* Mobil */
 @media (max-width: 667px) {
+
+    header {
+        min-height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .book-container {
         grid-template-columns: repeat(1, 1fr);
     }
@@ -111,7 +177,11 @@ select:hover {
         justify-content: space-evenly;
     }
 
-    select {
+    select,
+    button {
         width: 85px;
+        font-size: 10px;
+        padding: 6px;
     }
+
 }
