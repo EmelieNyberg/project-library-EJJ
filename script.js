@@ -1,7 +1,4 @@
-/*Here we have created two different arrays that you can work with if you want.
-If you choose to create your own arrays with elements, just make sure that some
-of the properties make sense to filter on, and some to sort on.*/
-
+// The book array
 const books = [
   {
     title: 'The Great Gatsby',
@@ -185,7 +182,7 @@ const books = [
   }
 ]
 
-
+// DOM
 const buttonShuffle = document.getElementById('buttonShuffle');
 const bookContainer = document.getElementById('bookContainer');
 const genreFilter = document.getElementById('genreFilter');
@@ -193,25 +190,7 @@ const buttonPopular = document.getElementById('buttonPopular');
 const buttonLatest = document.getElementById('buttonLatest');
 const buttons = document.querySelectorAll('button');
 
-const getRandomBook = () => {
-  // We want to get a random book
-  const randomIndex = Math.floor(Math.random() * books.length);
-  const book = books[randomIndex];
-
-  bookContainer.innerHTML = `
-   <div class="card">
-      <img src="${book.image}" alt="${book.title}">
-      <h3>${book.title}</h3>
-      <p>${book.author}</p>
-      <p>Year: ${book.year}</p>
-      <p>${book.genre}</p>
-      <p>⭐️ ${book.rating}</p>
-      <p>${book.description}</p>
-    </div>
-  `;
-};
-
-
+// Show all books from array
 const displayBooks = (bookArray) => {
   bookContainer.innerHTML = '';
   bookArray.forEach(book => {
@@ -229,51 +208,65 @@ const displayBooks = (bookArray) => {
   });
 };
 
-const filterGenre = () => {
-  // 1. get the value from the select
-  const value = genreFilter.value;
-  console.log('the user selected:', value)
+// Random book button
+const getRandomBook = () => {
+  const randomIndex = Math.floor(Math.random() * books.length);
+  const book = books[randomIndex];
 
+  bookContainer.innerHTML = `
+   <div class="card">
+      <img src="${book.image}" alt="${book.title}">
+      <h3>${book.title}</h3>
+      <p>${book.author}</p>
+      <p>Year: ${book.year}</p>
+      <p>${book.genre}</p>
+      <p>⭐️ ${book.rating}</p>
+      <p>${book.description}</p>
+    </div>
+  `;
+};
+
+// Filter by genre
+const filterGenre = () => {
+  const value = genreFilter.value;
   if (value === 'all') {
-    // get all the dogs
+    // Show all books
     displayBooks(books);
   } else {
-    // filter the dogs
+    // filter the books
     const filteredList = books.filter(book => book.genre.toLowerCase() === value.toLowerCase());
-    console.log('filtered list:', filteredList)
     displayBooks(filteredList);
   }
 }
 
+// Filter most poular books
 const filterPopular = () => {
   const sortedRating = books.sort((a, b) => b.rating - a.rating);
-  // Visa de sorterande böckerna (populäraste först)
-  console.log(sortedRating);
-  // Alternativt kan du visa böckerna direkt på sidan
   displayBooks(sortedRating);
 }
 
+// Filter latest books
 const filterLatest = () => {
   const sortedYear = books.sort((a, b) => b.year - a.year);
-  console.log(sortedYear);
   displayBooks(sortedYear);
 }
 
+// Button colored if active/clicked
 const handleButtonClick = (event) => {
   buttons.forEach(button => button.classList.remove('active'));
   event.target.classList.add('active');
 };
 
-// Lägger till event listeners för alla knappar
+// Adding eventlisteners for all buttons
 buttons.forEach(button => {
   button.addEventListener('click', handleButtonClick);
 });
 
-// Funktion för att hantera när en genre väljs
+// Drop-down colored if active/selected
 const handleDropdownSelection = () => {
   const selectedValue = genreFilter.value;
 
-  // Om ett värde är valt, gör dropdown aktiv
+  // If value is chosen the dropdown is active
   if (selectedValue) {
     genreFilter.classList.add('active');
   } else {
@@ -281,15 +274,14 @@ const handleDropdownSelection = () => {
   }
 };
 
-// Lägg till event listener på dropdown-menyn för att lyssna på val
-genreFilter.addEventListener('change', handleDropdownSelection);
-
+//Eventlistener
 buttonShuffle.addEventListener("click", getRandomBook);
 genreFilter.addEventListener("change", filterGenre);
 buttonPopular.addEventListener("click", filterPopular);
 buttonLatest.addEventListener("click", filterLatest);
+genreFilter.addEventListener('change', handleDropdownSelection);
 
-// Anropar funktionen
+// Invoking displayBooks function
 displayBooks(books);
 
 
